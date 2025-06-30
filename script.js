@@ -110,6 +110,9 @@ const markerClusterGroup = L.markerClusterGroup({
 	}
 });
 
+// Global collection of individual markers so they are accessible outside fetch
+const markers = [];
+
 fetch('cameras.kml')
 	.then(response => response.text())
 	.then(kmlText => {
@@ -135,8 +138,8 @@ fetch('cameras.kml')
 			}
 		});
 		
-		// Create markers from point features
-		const markers = [];
+		// Create markers from point features (populate the global markers array)
+		markers.length = 0; // reset in case of re-load
 		pointFeatures.forEach(feature => {
 			const coords = feature.geometry.coordinates;
 			if (Array.isArray(coords) && coords.length >= 2) {
@@ -246,6 +249,9 @@ fetch('cameras.kml')
 			map.fitBounds(L.geoJSON(outlineFeatures).getBounds(), { padding: [20, 20] });
 		}
 		
+		// After the map has been fitted, ensure only visible markers are rendered
+		updateVisibleMarkers();
+		
 		hideLoading();
 		
 		console.log(`Loaded ${markers.length} camera locations and ${outlineFeatures.length} outline features`);
@@ -279,3 +285,50 @@ document.addEventListener('click', (event) => {
 		alert(`Report submitted for camera \"${camera}\" as: ${action}`);
 	}
 });
+
+// -------------------------
+// Freeze clustering settings
+// -------------------------
+// Pins will stop being reclustered once the map zoom exceeds this level.
+// Adjust this value to suit your needs.
+const FREEZE_CLUSTER_ZOOM = 16;
+let clusteringFrozen      = false;
+
+// Helper: update which markers are visible based on the current map view
+function updateVisibleMarkers() {
+	const bounds = map.getBounds();
+
+	if (clusteringFrozen) {
+		// When clustering is frozen, individual markers are added directly to the map
+		markers.forEach(marker => {
+			const inView = bounds.contains(marker.getLatLng());
+			if (inView && !map.hasLayer(marker)) {
+				marker.addTo(map);
+			} else if (!inView && map.hasLayer(marker)) {
+				map.removeLayer(marker);
+			}
+		});
+	} else {
+		// While clustering is active, maintain a cluster group containing only visible markers
+		const visibleMarkers = markers.filter(marker => bounds.contains(marker.getLatLng()));
+		markerClusterGroup.clearLayers();
+		markerClusterGroup.addLayers(visibleMarkers);
+		if (!map.hasLayer(markerClusterGroup)) {
+			map.addLayer(markerClusterGroup);
+		}
+	}
+}
+
+// Once the user zooms beyond FREEZE_CLUSTER_ZOOM, remove the cluster group and
+// add the individual markers directly to the map. This prevents the pins from
+// being reclustered if the user zooms back out.
+map.on('zoomend', () => {
+	if (!clusteringFrozen && map.getZoom() > FREEZE_CLUSTER_ZOOM) {
+		clusteringFrozen = true;
+		map.removeLayer(markerClusterGroup);
+		updateVisibleMarkers();
+	}
+});
+
+// Update markers whenever the map is moved or zoomed
+map.on('moveend', updateVisibleMarkers);
