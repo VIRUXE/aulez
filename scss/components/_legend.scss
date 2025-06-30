@@ -1,0 +1,77 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.legend {
+  @include glass-effect;
+  border-radius: 20px;
+  padding: 1.5rem;
+
+  @include tablet {
+    align-self: start;
+    position: sticky;
+    top: 2rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: $color-text-primary;
+    border-bottom: 2px solid $color-background-secondary;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.75rem;
+
+    @include desktop {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    span:last-child {
+      color: $color-text-secondary;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+  }
+}
+
+// Status indicators
+.symbol {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  color: white;
+  box-shadow: $shadow-sm;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Status-specific colors
+@each $status, $colors in $status-colors {
+  [data-status="#{$status}"] {
+    @include status-gradient($status);
+  }
+} 

@@ -1,0 +1,27 @@
+// Colors
+$color-text-primary        : #333;
+$color-text-secondary      : #666;
+$color-background-primary  : #f5f7fa;
+$color-background-secondary: #e2e8f0;
+$color-accent-primary      : #4a5568;
+$color-accent-secondary    : #2d3748;
+
+// Status Colors
+$status-colors: (
+  'live'   : (#48bb78, #38a169),
+  'anpr'   : (#4299e1, #3182ce),
+  'dead'   : (#a0aec0, #718096),
+  'missing': (#f56565, #e53e3e),
+  'painted': (#ed8936, #dd6b20),
+  'cut'    : (#9f7aea, #805ad5)
+);
+
+// Shadows & Borders
+$shadow-sm   : 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-md   : 0 8px 32px rgba(0, 0, 0, 0.1);
+$shadow-lg   : 0 20px 40px rgba(0, 0, 0, 0.1);
+$border-color: rgba(255, 255, 255, 0.2);
+
+// Breakpoints
+$breakpoint-tablet : 768px;
+$breakpoint-desktop: 1024px;

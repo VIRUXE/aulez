@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "sass style.scss style.css --style compressed",
+    "watch": "sass style.scss style.css --watch",
+    "dev": "pnpm watch"
+  },
+  "devDependencies": {
+    "@xmldom/xmldom": "^0.9.8"
+  }
+}

@@ -1,0 +1,26 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+
+  @include tablet {
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  @include desktop {
+    gap: 2.5rem;
+    padding: 2.5rem;
+  }
+} 

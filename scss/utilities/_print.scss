@@ -1,0 +1,28 @@
+@use '../variables' as *;
+
+@media print {
+  body {
+    background: white;
+  }
+  
+  header,
+  footer,
+  .loading {
+    display: none;
+  }
+  
+  main {
+    display: block;
+  }
+  
+  #map {
+    height: 80vh;
+  }
+  
+  .legend {
+    break-inside: avoid;
+    margin-top: 1rem;
+    background: white;
+    border: 1px solid $color-background-secondary;
+  }
+} 

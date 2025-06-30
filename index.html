@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avoid Ultra Low Emissions Zone</title>
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Avoid Ultra Low Emissions Zone</h1>
+        <p>Real-time status monitoring of ULEZ cameras across London and navgiation to avoid any cameras</p>
+    </header>
+
+    <main>
+        <section class="map-container">
+            <div id="map" role="application" aria-label="Interactive camera location map"></div>
+            <div class="loading" id="loading" aria-live="polite">
+                <div class="spinner"></div>
+                <p>Loading camera data...</p>
+            </div>
+        </section>
+
+        <aside class="legend">
+            <h2>Legend</h2>
+            <ul>
+                <li><span class="symbol" data-status="live">●</span><span>Live Camera</span></li>
+                <li><span class="symbol" data-status="anpr">A</span><span>ANPR + ULEZ Camera</span></li>
+                <li><span class="symbol" data-status="dead">●</span><span>Inactive Camera</span></li>
+                <li><span class="symbol" data-status="missing">M</span><span>Missing/Stolen</span></li>
+                <li><span class="symbol" data-status="painted">P</span><span>Painted/Vandalized</span></li>
+                <li><span class="symbol" data-status="cut">C</span><span>Cable Cut</span></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <p>
+            Data visualization by 
+            <a href="https://github.com/VIRUXE/aulez" target="_blank" rel="noopener noreferrer">
+                VIRUXE/aulez
+            </a>
+        </p>
+        <p>
+            Camera data provided by the now offline juliemaps.co.uk.
+        </p>
+    </footer>
+
+    <script src="leaflet/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="togeojson.js"></script>
+    <script src="leaflet.filelayer.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

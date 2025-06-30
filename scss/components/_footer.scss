@@ -1,0 +1,60 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+footer {
+  @include glass-effect;
+  backdrop-filter: blur(10px);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid $border-color;
+  margin-top: auto;
+
+  p {
+    &:first-child {
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      color: #4a5568;
+    }
+
+    &:last-child {
+      font-size: 0.75rem;
+      color: #718096;
+    }
+  }
+
+  a {
+    color: $color-accent-primary;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(135deg, $color-accent-primary, $color-accent-secondary);
+      transition: width 0.3s ease;
+
+      @include reduced-motion {
+        transition: none;
+      }
+    }
+
+    &:hover {
+      color: $color-accent-secondary;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &:focus {
+      @include focus-outline;
+      border-radius: 4px;
+    }
+  }
+} 

@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'variables' as *;
+
+// Glass morphism effect
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+// Gradient text
+@mixin gradient-text($color1, $color2) {
+  background: linear-gradient(135deg, $color1, $color2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Status gradient background
+@mixin status-gradient($status) {
+  $colors: map.get($status-colors, $status);
+  background: linear-gradient(135deg, list.nth($colors, 1), list.nth($colors, 2));
+}
+
+// Media query mixins
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// Reduced motion
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Focus state
+@mixin focus-outline($color: $color-accent-primary, $offset: 2px) {
+  outline: 2px solid $color;
+  outline-offset: $offset;
+} 
