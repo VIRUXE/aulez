@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
-    <name>Test map.</name>
-    <description><![CDATA[This map is free for personal viewing.<br>It is maintained by a group of volunteers but we are constantly improving the service with faster servers and improved security that we need to pay for.<br>If you can spare it, we need donations to our PayPal crowd funder to keep this map going:<br><br>https://www.paypal.com/pools/c/93bkajPGL5<br><br>We always laugh when we get a donation of £12.50<br><br><br>The Pins Legend is:<br>-------------------<br>Red = Live<br>Black = Dead<br><br>Red "-" = Live<br>Red "A" = An ANPR camera and a ULEZ camera<br><br>Black "-" = Dead Other<br>Black "X" = pole only, No camera yet<br>Black "C" = Cable cut<br>Black "P" = Painted / stickered<br>Black "M" = Missing (stolen etc)<br><br><br>---------------------------------------------------------<br><br><br>DO NOT EMAIL US FOR CAMERA UPDATES.<br>Instead please post updates on Facebook Group 'ULEZ camera locations'<br>or use the wesbite Juliemaps.co.uk<br><br>---------------------------------------------------------<br>This map data and image is the property of 'Julie Maps ULEZ'. It may only be viewed by one person on a pc/phone at a time.<br><br>We are the only ULEZ map that is constantly updated with the camera status.<br><br>Media can contact us at juliemapsulez@gmail.com.<br><br>Media requires specific permission before using our data or imagery.<br>]]></description>
+    <name>ULEZ Cameras</name>
     <Style id="icon-1899-DB4436-normal">
       <IconStyle>
         <color>ff3644db</color>
